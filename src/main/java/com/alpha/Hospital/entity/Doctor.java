@@ -2,18 +2,23 @@ package com.alpha.Hospital.entity;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Size;
 @Entity
 public class Doctor {
 	@Id
 	private int id;
+	@Length(min=3,max=20)
 	private String name;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "doctor_id")
+	@Size(min=1,max=50)
 	private List<Patients> plist;
 
 	public int getId() {

@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.alpha.Hospital.ResponceStructure;
-import com.alpha.Hospital.Exception.DoctorNotFoundEception;
+
+import com.alpha.Hospital.Exception.DoctorNotFoundException;
 import com.alpha.Hospital.Repository.DoctorRepo;
 import com.alpha.Hospital.entity.Doctor;
 
@@ -19,7 +20,7 @@ public class DoctorService {
 	}
 
 	public ResponceStructure<Doctor> findDoc(int id) {
-		Doctor s=dr.findById(id).orElseThrow(()-> new DoctorNotFoundEception());
+		Doctor s=dr.findById(id).orElseThrow(()-> new DoctorNotFoundException());
 		ResponceStructure<Doctor> rs = new  ResponceStructure<Doctor>();
 		
 			rs.setStatuscode(HttpStatus.FOUND.value());
