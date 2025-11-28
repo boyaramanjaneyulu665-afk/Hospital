@@ -2,24 +2,30 @@ package com.alpha.Hospital.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 @Entity
 public class Doctor {
 	@Id
 	private int id;
-	private int name;
+	private String name;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "doctor_id")
 	private List<Patients> plist;
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 	public List<Patients> getPlist() {
@@ -28,7 +34,7 @@ public class Doctor {
 	public void setPlist(List<Patients> plist) {
 		this.plist = plist;
 	}
-	public Doctor(int id, int name, List<Patients> plist) {
+	public Doctor(int id, String name, List<Patients> plist) {
 		super();
 		this.id = id;
 		this.name = name;
